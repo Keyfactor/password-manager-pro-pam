@@ -1,19 +1,64 @@
 {
   "$schema": "https://keyfactor.github.io/integration-manifest-schema.json",
   "integration_type": "pam",
-  "name": "PAM Integration Template",
+  "name": "Password Manager Pro",
   "status": "prototype",
-  "description": "This project is meant to be a template to quickly build a basic integration product build. Currently in dev, a work in progress,",
+  "description": "The Password Manager Pro PAM extension allows for the retrieval of account usernames and passwords",
   "support_level": "kf-community",
-  "link_github": false,
-  "update_catalog": false,
-  "release_dir": "UPDATE-THIS-WITH-PATH-TO-BINARY-BUILD-FOLDER",
+  "link_github": true,
+  "update_catalog": true,
+  "release_dir": "password-manager-pro-pam/bin/Release",
+  "release_project": "password-manager-pro-pam/password-manager-pro-pam.csproj",
   "about": {
     "pam": {
-      "assemblyName": "changeme.assemblyName",
-      "fullyQualifiedClassName": "changeme.fullyQualifiedClassName",
-      "dbName": "changeme.dbName"
+      "providerName": "Password Manager Pro PAM Provider",
+      "assemblyName": "password-manager-pro-pam",
+      "fullyQualifiedClassName": "Keyfactor.Extensions.Pam.PMP",
+      "dbName": "Password-Manager-Pro",
+      "pam_types": {
+        "Password-Manager-Pro": {
+          "Name": "Password-Manager-Pro",
+          "Parameters": [
+            {
+              "Name": "Host",
+              "DisplayName": "Vault Host",
+              "DataType": 1,
+              "InstanceLevel": false,
+              "Description": "The IP address or URL of the PMP instance, including any port number"
+            },
+            {
+              "Name": "Authtoken",
+              "DisplayName": "Authentication Token",
+              "DataType": 2,
+              "InstanceLevel": false,
+              "Description": "The access token for the PMP Api user."
+            },
+            {
+              "Name": "resourceName",
+              "DisplayName": "Resource Name",
+              "DataType": 1,
+              "InstanceLevel": true,
+              "Description": "The Resource Name of the secret to retrieve as displayed in PMP"
+            },
+            
+            {
+              "Name": "accountName",
+              "DisplayName": "Account Name",
+              "DataType": 1,
+              "InstanceLevel": true,
+              "Description": "The Account Name of the secret to retrieve as displayed in PMP"
+            },
+            
+            {
+              "Name": "LookupType",
+              "DisplayName": "Lookup Type",
+              "DataType": 1,
+              "InstanceLevel": true,
+              "Description": "Must be either Username or Password. Defines which value the extension should retrieve"
+            }
+          ]
+        }
+      }
     }
   }
 }
-

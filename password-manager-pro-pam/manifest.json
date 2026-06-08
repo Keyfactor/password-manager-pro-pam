@@ -1,0 +1,14 @@
+{
+  "extensions": {
+    "Keyfactor.Platform.Extensions.IPAMProvider": {
+      "PAMProviders.Password-Manager-Pro.PAMProvider": {
+        "assemblyPath": "password-manager-pro-pam.dll",
+        "TypeFullName": "Keyfactor.Extensions.Pam.PasswordManagerPro.PasswordManagerPAM"
+      }
+    }
+  },
+  "Keyfactor:PAMProviders:Password-Manager-Pro:InitializationInfo": {
+    "Host": "https://localhost:7272",
+    "Authtoken": "F60AE004-C1FE-4555-B514-73772E1DE178"
+  }
+}
