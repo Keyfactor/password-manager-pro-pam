@@ -1,7 +1,7 @@
 {
   "$schema": "https://keyfactor.github.io/integration-manifest-schema.json",
   "integration_type": "pam",
-  "name": "Password Manager Pro",
+  "name": "Password Manager Pro Pam Provider",
   "status": "prototype",
   "description": "The Password Manager Pro PAM extension allows for the retrieval of account usernames and passwords",
   "support_level": "kf-community",
