@@ -1,5 +1,5 @@
 <h1 align="center" style="border-bottom: none">
-    Password Manager Pro
+    Password Manager Pro Pam Provider
 </h1>
 
 <p align="center">
@@ -34,16 +34,16 @@
 TODO this section is required
 
 ## Support
-The Password Manager Pro is open source and there is **no SLA**. Keyfactor will address issues as resources become available. Keyfactor customers may request escalation by opening up a support ticket through their Keyfactor representative.
+The Password Manager Pro Pam Provider is open source and there is **no SLA**. Keyfactor will address issues as resources become available. Keyfactor customers may request escalation by opening up a support ticket through their Keyfactor representative.
 
 > To report a problem or suggest a new feature, use the **[Issues](../../issues)** tab. If you want to contribute actual bug fixes or proposed enhancements, use the **[Pull requests](../../pulls)** tab.
 
 ## Getting Started
 
-The Password Manager Pro is used by Command to resolve PAM-eligible credentials for Universal Orchestrator extensions and for accessing Certificate Authorities. When configured, Command will use the Password Manager Pro to retrieve credentials needed to communicate with the target system. There are two ways to install the Password Manager Pro, and you may elect to use one or both methods:
+The Password Manager Pro Pam Provider is used by Command to resolve PAM-eligible credentials for Universal Orchestrator extensions and for accessing Certificate Authorities. When configured, Command will use the Password Manager Pro Pam Provider to retrieve credentials needed to communicate with the target system. There are two ways to install the Password Manager Pro Pam Provider, and you may elect to use one or both methods:
 
-1. **Locally on the Keyfactor Command server**: PAM credential resolution via the Password Manager Pro will occur on the Keyfactor Command server each time an elegible credential is needed.
-2. **Remotely On Universal Orchestrators**: When Jobs are dispatched to Universal Orchestrators, the associated Certificate Store extension assembly will use the Password Manager Pro to resolve eligible PAM credentials.
+1. **Locally on the Keyfactor Command server**: PAM credential resolution via the Password Manager Pro Pam Provider will occur on the Keyfactor Command server each time an elegible credential is needed.
+2. **Remotely On Universal Orchestrators**: When Jobs are dispatched to Universal Orchestrators, the associated Certificate Store extension assembly will use the Password Manager Pro Pam Provider to resolve eligible PAM credentials.
 
 Before proceeding with installation, you should consider which pattern is best for your requirements and use case.
 
@@ -53,7 +53,7 @@ Before proceeding with installation, you should consider which pattern is best f
 > For the most up-to-date and complete documentation on how to install a PAM provider extension, please visit our [product documentation](https://software.keyfactor.com/Core-OnPrem/Current/Content/ReferenceGuide/Preparing%20Third%20Party%20PAM%20Providers%20to%20Work%20with.htm?Highlight=pam%20provider#InstallingCustomPAMProviderExtensions)
 
 
-To install Password Manager Pro, it is recommended you install [kfutil](https://github.com/Keyfactor/kfutil). `kfutil` is a command-line tool that simplifies the process of creating PAM Types in Keyfactor Command.
+To install Password Manager Pro Pam Provider, it is recommended you install [kfutil](https://github.com/Keyfactor/kfutil). `kfutil` is a command-line tool that simplifies the process of creating PAM Types in Keyfactor Command.
 
 
 
