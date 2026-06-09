@@ -36,7 +36,8 @@ The Password Manager Pro PAM Provider allows for the retrieval of stored account
 ## Installation and Configuration
 
 #### In ManageEngine Password Manager Pro
-When configuring ManageEngine Password Manager Pro (PMP) for use as a PAM Provider with Keyfactor, you will need to create an API user and generate an API token with the appropriate permissions. Navigate to Users → Add User → Add Api user in the PMP web interface to create the user and token. Ensure the associated user account has at minimum read access to the resources you intend to retrieve credentials from, and the host name field is set to the ip of your KeyFactor Command instance.
+When configuring ManageEngine Password Manager Pro (PMP) for use as a PAM Provider with Keyfactor, you will need to create an API user and generate an API token with the appropriate permissions. Navigate to Users → Add User → Add Api user in the PMP web interface to create the user and token. Ensure the associated user account has at minimum read access to the resources you intend to retrieve credentials from, and the host name field is set to the IP of your Keyfactor Command instance.
+
 After ensuring the API User exists and has access to the resource and account you wish to retrieve from PMP, you can use the resource's name (the "Resource Name") and the account name (the "Account Name") to retrieve credentials via the PMP PAM Provider extension.
 
 #### On the Universal Orchestrator
