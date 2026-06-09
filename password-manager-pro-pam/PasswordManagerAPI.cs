@@ -28,16 +28,14 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
 {
     internal class PasswordManagerAPI
     {
-        internal static string GetResourceAccountID(string name, Dictionary<string, string> instanceParameters, Uri host, string Authtoken)
+        internal static AccountResourceLookup GetResourceAccountID(string name, Dictionary<string, string> instanceParameters, Uri host, string Authtoken)
         {
             ILogger logger = LogHandler.GetClassLogger<PasswordManagerAPI>();
-            logger.LogDebug($"PAM Provider {name} - Bazinga.");
+            logger.LogDebug($"PAM Provider {name} - Getting resource and account ids.");
 
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create($"{host}restapi/json/v1/resources/getResourceIdAccountId?RESOURCENAME={instanceParameters["resourceName"]}&ACCOUNTNAME={instanceParameters["accountName"]}");
             req.Method = "GET";
             req.Headers.Add("AUTHTOKEN", Authtoken);
-            //req.Headers.Add("RESOURCENAME", instanceParameters["resourceName"]);
-            //req.Headers.Add("ACCOUNTNAME", instanceParameters["accountName"]);
             logger.LogDebug($"PAM Provider {name} - requesting secret located at {req.RequestUri}");
 
             req.ServerCertificateValidationCallback = (sender, cert, chain, errors) =>
@@ -45,14 +43,6 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
                 var filtered = errors & ~System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch;
                 return filtered == System.Net.Security.SslPolicyErrors.None;
             };
-
-            /*logger.LogDebug($"Request URI: {req.RequestUri}");
-            logger.LogDebug($"Method: {req.Method}");
-            logger.LogDebug($"Host header: {req.Host}");
-            foreach (string key in req.Headers.AllKeys)
-            {
-                logger.LogDebug($"Header: {key} = {req.Headers[key]}");
-            }*/
 
             Stream responseStream;
             try
@@ -65,7 +55,7 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
             {
                 Exception current = ex;
                 int depth = 0;
-                while (current != null)
+                while (current != null && depth <= 4)
                 {
                     logger.LogError($"Exception[{depth}]: {current.GetType().Name}: {current.Message}");
                     current = current.InnerException;
@@ -81,13 +71,15 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
             PMPResourceAccountResponse response = JsonConvert.DeserializeObject<PMPResourceAccountResponse>(strResponse);
 
             if (response.Operation.Result.Status != "Success")
-                throw new Exception($"PAM Provider {name} - PMP API error: {response.Operation.Result.Message}");
+                throw new PasswordManagerProException($"PAM Provider {name} - PMP API error: {response.Operation.Result.Message}");
 
-            string resourceId = response.Operation.Details["RESOURCEID"];
-            string accountId = response.Operation.Details["ACCOUNTID"];
+            AccountResourceLookup accountResources = new AccountResourceLookup();
 
-            logger.LogDebug($"PAM Provider {name} - resolved RESOURCEID and ACCOUNTID");
-            return $"{resourceId},{accountId}";
+            accountResources.ResourceId = response.Operation.Details["RESOURCEID"];
+            accountResources.AccountId = response.Operation.Details["ACCOUNTID"];
+
+            logger.LogDebug($"PAM Provider {name} - resolved RESOURCEID: {accountResources.ResourceId} and ACCOUNTID: {accountResources.AccountId}");
+            return accountResources;
         }
 
         internal static string GetPasswordManagerValue(string name, Dictionary<string, string> instanceParameters, Uri host, string Authtoken)
@@ -95,10 +87,9 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
             ILogger logger = LogHandler.GetClassLogger<PasswordManagerAPI>();
             logger.LogDebug($"PAM Provider {name} - Beginning secret fetch.");
 
-            string idString = GetResourceAccountID(name, instanceParameters, host, Authtoken);
-            string[] ids = idString.Split(',');
+            AccountResourceLookup accountIds = GetResourceAccountID(name, instanceParameters, host, Authtoken);
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create($"{host}restapi/json/v1/resources/{ids[0]}/accounts/{ids[1]}/password");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create($"{host}restapi/json/v1/resources/{accountIds.ResourceId}/accounts/{accountIds.AccountId}/password");
             req.Method = "GET";
             req.Headers.Add("AUTHTOKEN", Authtoken);
             logger.LogDebug($"PAM Provider {name} - requesting secret located at {req.RequestUri}");
@@ -120,7 +111,7 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
             {
                 Exception current = ex;
                 int depth = 0;
-                while (current != null)
+                while (current != null && depth <= 4)
                 {
                     logger.LogError($"Exception[{depth}]: {current.GetType().Name}: {current.Message}");
                     current = current.InnerException;
@@ -141,6 +132,11 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
             logger.LogDebug($"PAM Provider {name} - returning password from Password Manager Pro");
             return response.Operation.Details["PASSWORD"];
         }
+    }
+    public class AccountResourceLookup
+    {
+        public string ResourceId { get; set; }
+        public string AccountId { get; set; }
     }
     internal class PMPResourceAccountResponse
     {
