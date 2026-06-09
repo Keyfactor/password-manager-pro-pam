@@ -1,28 +1,9 @@
+## Requirements
+This release requires Keyfactor version 9.10 or greater.
+This release was tested against Password Manager Pro 13.2
+Using this on a Universal Orchestrator requires UO version 10.1 or greater.
+
 ## Overview
 
 TODO Overview is a required section
-
-## Requirements
-
-TODO Requirements is a required section
-
-## Extension Mechanics
-
-TODO Extension Mechanics is an optional section. If this section doesn't seem necessary, please delete it.
-
-## Platform Install
-
-TODO Platform Install is an optional section. If this section doesn't seem necessary, please delete it.
-
-## Orchestrator Install
-
-TODO Orchestrator Install is an optional section. If this section doesn't seem necessary, please delete it.
-
-## Platform Usage
-
-TODO Platform Usage is an optional section. If this section doesn't seem necessary, please delete it.
-
-## Orchestrator Usage
-
-TODO Orchestrator Usage is an optional section. If this section doesn't seem necessary, please delete it.
 

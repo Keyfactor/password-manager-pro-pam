@@ -4,23 +4,13 @@ TODO Overview is a required section
 
 ## Requirements
 
-TODO Requirements is a required section
+This release requires Keyfactor version 9.10 or greater.
+This release was tested against Password Manager Pro 13.2
+Using this on a Universal Orchestrator requires UO version 10.1 or greater.
 
-## Mechanics
-
-TODO Extension Mechanics is an optional section. If this section doesn't seem necessary, please delete it.
+This release requires Keyfactor version 9.10 or greater.
+This release was tested against Password Manager Pro 13.2
+Using this on a Universal Orchestrator requires UO version 10.1 or greater.
 
 TODO Overview is a required section
-
-TODO Requirements is a required section
-
-TODO Extension Mechanics is an optional section. If this section doesn't seem necessary, please delete it.
-
-TODO Platform Install is an optional section. If this section doesn't seem necessary, please delete it.
-
-TODO Orchestrator Install is an optional section. If this section doesn't seem necessary, please delete it.
-
-TODO Platform Usage is an optional section. If this section doesn't seem necessary, please delete it.
-
-TODO Orchestrator Usage is an optional section. If this section doesn't seem necessary, please delete it.
 
