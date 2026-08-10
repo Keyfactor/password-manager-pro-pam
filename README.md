@@ -4,7 +4,7 @@
 
 <p align="center">
   <!-- Badges -->
-<img src="https://img.shields.io/badge/integration_status-prototype-3D1973?style=flat-square" alt="Integration Status: prototype" />
+<img src="https://img.shields.io/badge/integration_status-prototype-3D1973?style=flat-square" alt="Integration Status: production" />
 <a href="https://github.com/Keyfactor/password-manager-pro-pam/releases"><img src="https://img.shields.io/github/v/release/Keyfactor/password-manager-pro-pam?style=flat-square" alt="Release" /></a>
 <img src="https://img.shields.io/github/issues/Keyfactor/password-manager-pro-pam?style=flat-square" alt="Issues" />
 <img src="https://img.shields.io/github/downloads/Keyfactor/password-manager-pro-pam/total?style=flat-square&label=downloads&color=28B905" alt="GitHub Downloads (all assets, all releases)" />
@@ -36,7 +36,8 @@ The Password Manager Pro PAM Provider allows for the retrieval of stored account
 ## Installation and Configuration
 
 #### In ManageEngine Password Manager Pro
-When configuring ManageEngine Password Manager Pro (PMP) for use as a PAM Provider with Keyfactor, you will need to create an API user and generate an API token with the appropriate permissions. Navigate to Users → Add User → Add Api user in the PMP web interface to create the user and token. Ensure the associated user account has at minimum read access to the resources you intend to retrieve credentials from, and the host name field is set to the ip of your KeyFactor Command instance.
+When configuring ManageEngine Password Manager Pro (PMP) for use as a PAM Provider with Keyfactor, you will need to create an API user and generate an API token with the appropriate permissions. Navigate to Users → Add User → Add Api user in the PMP web interface to create the user and token. Ensure the associated user account has at minimum read access to the resources you intend to retrieve credentials from, and the host name field is set to the IP of your Keyfactor Command instance.
+
 After ensuring the API User exists and has access to the resource and account you wish to retrieve from PMP, you can use the resource's name (the "Resource Name") and the account name (the "Account Name") to retrieve credentials via the PMP PAM Provider extension.
 
 #### On the Universal Orchestrator
@@ -69,7 +70,7 @@ Select the exported .cer file and complete the wizard
 If PMP is running on the same machine as the extension and you are connecting via localhost, the certificate's hostname will not match. This is expected and is handled automatically by the extension; no additional configuration is required.
 
 ## Support
-The Password Manager Pro Pam Provider is open source and there is **no SLA**. Keyfactor will address issues as resources become available. Keyfactor customers may request escalation by opening up a support ticket through their Keyfactor representative.
+The Password Manager Pro Pam Provider is supported by Keyfactor for Keyfactor customers. If you have a support issue, please open a support ticket via the Keyfactor Support Portal at https://support.keyfactor.com.
 
 > To report a problem or suggest a new feature, use the **[Issues](../../issues)** tab. If you want to contribute actual bug fixes or proposed enhancements, use the **[Pull requests](../../pulls)** tab.
 
