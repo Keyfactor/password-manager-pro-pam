@@ -5,9 +5,9 @@
 <p align="center">
   <!-- Badges -->
 <img src="https://img.shields.io/badge/integration_status-prototype-3D1973?style=flat-square" alt="Integration Status: prototype" />
-<a href="https://github.com/Keyfactor/password-manager-pro/releases"><img src="https://img.shields.io/github/v/release/Keyfactor/password-manager-pro?style=flat-square" alt="Release" /></a>
-<img src="https://img.shields.io/github/issues/Keyfactor/password-manager-pro?style=flat-square" alt="Issues" />
-<img src="https://img.shields.io/github/downloads/Keyfactor/password-manager-pro/total?style=flat-square&label=downloads&color=28B905" alt="GitHub Downloads (all assets, all releases)" />
+<a href="https://github.com/Keyfactor/password-manager-pro-pam/releases"><img src="https://img.shields.io/github/v/release/Keyfactor/password-manager-pro-pam?style=flat-square" alt="Release" /></a>
+<img src="https://img.shields.io/github/issues/Keyfactor/password-manager-pro-pam?style=flat-square" alt="Issues" />
+<img src="https://img.shields.io/github/downloads/Keyfactor/password-manager-pro-pam/total?style=flat-square&label=downloads&color=28B905" alt="GitHub Downloads (all assets, all releases)" />
 </p>
 
 <p align="center">
@@ -105,7 +105,7 @@ Create the required PAM Types in the connected Command platform.
 
 ```shell
 # Password-Manager-Pro
-kfutil pam-types create -r password-manager-pro -n Password-Manager-Pro
+kfutil pam-types create -r password-manager-pro-pam -n Password-Manager-Pro
 ```
 
 ##### Using the API
