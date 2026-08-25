@@ -1,4 +1,4 @@
-// Copyright 2023 Keyfactor
+// Copyright 2026 Keyfactor
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,6 +24,10 @@ using System.Xml.Linq;
 
 namespace Keyfactor.Extensions.Pam.PasswordManagerPro
 {
+    public class PasswordManagerProException : Exception
+    {
+        public PasswordManagerProException(string msg) : base(msg) { }
+    }
     public class PasswordManagerPAM : IPAMProvider
     {
         public string Name => "Password-Manager-Pro";
@@ -31,21 +35,22 @@ namespace Keyfactor.Extensions.Pam.PasswordManagerPro
         public string GetPassword(Dictionary<string, string> instanceParameters, Dictionary<string, string> initializationInfo)
         {
             ILogger logger = LogHandler.GetClassLogger<PasswordManagerPAM>();
-            logger.LogDebug("Password Manager Pro Starting");
             logger.MethodEntry(LogLevel.Trace);
-            if (instanceParameters["LookupType"].Equals("Username"))
+            logger.LogDebug("Password Manager Pro Starting");
+            string lookupType = instanceParameters["LookupType"].Trim();
+            if (lookupType.Equals("username", StringComparison.OrdinalIgnoreCase))
             {
-                logger.LogDebug($"Returning: {instanceParameters["accountName"]}");
+                logger.LogDebug("Returning Username");
                 return instanceParameters["accountName"];
             }
-            else if (instanceParameters["LookupType"].Equals("Password"))
+            else if (lookupType.Equals("password", StringComparison.OrdinalIgnoreCase))
             {
                 return PasswordManagerAPI.GetPasswordManagerValue(Name, instanceParameters, new Uri(initializationInfo["Host"]), initializationInfo["Authtoken"]);
             }
             else
             {
-                logger.LogError("PAM extension Lookup type parameter must be defined. Options: Username, Password");
-                return "NULL";
+                logger.LogError($"PAM extension Lookup type {instanceParameters["LookupType"]} is invalid. Options: Username, Password");
+                throw new PasswordManagerProException($"PAM extension Lookup type {instanceParameters["LookupType"]} is invalid. Options: Username, Password");
             }
         }
     }
